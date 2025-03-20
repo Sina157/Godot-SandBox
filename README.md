@@ -1,2 +1,2 @@
 # Godot-SandBox
-a free open source game made with godot 
+a free multiplayer game made with godot and matcha plugin
