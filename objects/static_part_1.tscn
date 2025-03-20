@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://ct77hy0t66y6u"]
+
+[ext_resource type="Texture2D" uid="uid://cdludhg32q787" path="res://texture/rock_boulder_dry_diff_1k.jpg" id="1_icgjr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ui2ip"]
+albedo_color = Color(0.614745, 0.614745, 0.614745, 1)
+albedo_texture = ExtResource("1_icgjr")
+
+[sub_resource type="BoxMesh" id="BoxMesh_i6nl5"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_363pc"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="static_part_1" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 3)
+material_override = SubResource("StandardMaterial3D_ui2ip")
+mesh = SubResource("BoxMesh_i6nl5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_363pc")

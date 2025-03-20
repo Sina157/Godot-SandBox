@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://ba4ck5nauoudy"]
+
+[ext_resource type="Script" uid="uid://bxndh2apm5wq2" path="res://scripts/killpart.gd" id="1_ukvho"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ifq2i"]
+albedo_color = Color(0.784314, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vyht1"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bf3um"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_huihk"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[node name="kill_part" type="Area3D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_ukvho")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_ifq2i")
+mesh = SubResource("BoxMesh_vyht1")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="mesh"]
+transform = Transform3D(0.97, 0, 0, 0, 0.97, 0, 0, 0, 0.97, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_bf3um")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_huihk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
